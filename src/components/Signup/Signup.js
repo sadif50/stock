@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import rocket from '../../assets/rocket.png';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -7,6 +7,8 @@ import { AuthContext } from '../../contexts/AuthProvider';
 const Signup = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const {createUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
     // handle sign up
     const handleSignUp = data => {
@@ -14,6 +16,7 @@ const Signup = () => {
         .then(res => {
             console.log(res.user);
             reset();
+            navigate('/');
         })
         .catch(err => {
             alert(err.message);
