@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/Home";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
+import Login from "../components/Login/Login";
+import Signup from "../components/Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
