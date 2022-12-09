@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
+import Plot from 'react-plotly.js';
+import './Home.css';
 
 const Home = () => {
     // states
@@ -58,14 +60,106 @@ const Home = () => {
     console.log('lows', lows);
     console.log('closes', closes);
     console.log('volumes', volumes);
+
+
+
+
     if (isLoading) {
         return <h1>Loading...</h1>
     }
     return (
         <div>
-            {
-
-            }
+            <Plot className='myChart'
+                data={[
+                    {
+                        x: keys,
+                        y: opens,
+                        name: 'Open',
+                        type: 'scatter'
+                    },
+                    {
+                        x: keys,
+                        y: highs,
+                        name: 'High',
+                        yaxis: 'y2',
+                        type: 'scatter'
+                    },
+                    {
+                        x: keys,
+                        y: lows,
+                        name: 'Low',
+                        yaxis: 'y3',
+                        type: 'scatter'
+                    },
+                    {
+                        x: keys,
+                        y: closes,
+                        name: 'Close',
+                        yaxis: 'y4',
+                        type: 'scatter'
+                    },
+                    {
+                        x: keys,
+                        y: volumes,
+                        name: 'Volume',
+                        yaxis: 'y5',
+                        type: 'scatter'
+                    }
+                ]}
+                layout={
+                    {
+                        title: `${symbol} showing ${interval} interval`,
+                        autosize: true,
+                        height: 500,
+                        paper_bgcolor: '#eee',
+                        xaxis: { domain: [0.3, 0.7] },
+                        yaxis: {
+                            title: 'Open',
+                            titlefont: { color: '#1f77b4' },
+                            tickfont: { color: '#1f77b4' }
+                        },
+                        yaxis2: {
+                            title: 'High',
+                            titlefont: { color: '#ff7f0e' },
+                            tickfont: { color: '#ff7f0e' },
+                            anchor: 'free',
+                            overlaying: 'y',
+                            side: 'left',
+                            position: 0.20
+                        },
+                        yaxis3: {
+                            title: 'Low',
+                            titlefont: { color: '#2ca02c' },
+                            tickfont: { color: '#2ca02c' },
+                            anchor: 'free',
+                            overlaying: 'y',
+                            side: 'left',
+                            position: 0.10
+                        },
+                        yaxis4: {
+                            title: 'Close',
+                            titlefont: { color: '#d62728' },
+                            tickfont: { color: '#d62728' },
+                            anchor: 'x',
+                            overlaying: 'y',
+                            side: 'right',
+                            position: 0.75
+                        },
+                        yaxis5: {
+                            title: 'Volume',
+                            titlefont: { color: '#9467bd' },
+                            tickfont: { color: '#9467bd' },
+                            anchor: 'free',
+                            overlaying: 'y',
+                            side: 'right',
+                            position: 0.85
+                        }
+                    }
+                }
+            />
+            <div className='table-responsive'>
+                
+            </div>
         </div>
     );
 };
