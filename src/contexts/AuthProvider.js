@@ -11,21 +11,25 @@ const AuthProvider = ({children}) => {
 
     // Create firebase User with Email and Password
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     // Log in firebase user with email and password
     const logIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     // Log in with google 
     const googleLogin = provider => {
+        setLoading(true);
         return signInWithPopup(auth, provider);
     }
 
     // logOut firebase User
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
